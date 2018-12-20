@@ -2,17 +2,74 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>My CRUD App</title>
-    <script
-        src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous">
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cookie Finder</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Staatliches|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
 
+<!-- First Page (Header) -->
+<div class="block" id="first">
+  <h1>Cookie Finder</h1>
+  <p style="font-family: 'Pacifico', cursive; font-size: 20px;">Find and create cookie recipes</p>
+  <div class = "btn-div">
+    <a class="btn" href="#about">About</a>
+    <a class="btn" href="#recipes">Find Recipes</a>
+    <a class="btn" href="#write">Write Recipes</a>
+  </div>
+</div>
 
+<!-- About Page -->
+<section id="about">
+  <div class="about-page">
+    <h2>Search for cookie recipes or write your own recipes!</h2>
+    <p>Search for holiday cookies, sugar cookies, or any cookies you want! Get inspired by these recipes and write your own!</p>
+    <p style="font-size:11px;">Search powered by <img src="images/Yummly_logo.png" style="width:35px;height:12px;float: none;" alt="Yummly"></p>
+  </div>
+</section>
+
+
+<!-- Search Recipes -->
+<section id="recipes">
+  <div class="recipes-page">
+    <h2>Search Recipes</h2>
+    <div class="search-bar">
+      <form style="margin-bottom: 20px;">
+        <input type="text" class="searchInput" placeholder="Search cookie recipes.." size="70">
+        <button type="submit" class="searchButton" ><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+
+    <div class="recipe-cards" style="width: 100%;text-align:center;"></div>
+
+</section>
+
+<!-- Write Recipes -->
+<section id="write">
+  <form id="write-form">
+  <div class="content">
+    <h2 style="font-family: 'Pacifico', cursive; font-size: 40px;">Your Recipes</h2>
+    <input type="text" class="recipeName" size=70 placeholder="Recipe Name" required minlength="2"><br>
+    <textarea name="recipe" class="recipe" rows="10" cols="80" placeholder="Write recipe here.." required minlength="5"></textarea><br>
+    <div>
+    <button class = "btn-submit" type="button">Submit</button>
+    <button class = "btn-clear" type="button"> Clear</button>
+    <button class = "btn-delete" type="button">Delete All</button>
+    </div>
+  </div>
+  </form>
+
+  <div class="allRecipes"></div>
+</section>
+
+
+
+
+<!-- Add JS files -->
+  <script type='text/javascript' src='config.js'></script>
   <script src="app.js"></script>
   </body>
 </html>
