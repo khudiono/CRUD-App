@@ -54,7 +54,7 @@ $(document).ready(function(){
 
   $('.btn-submit').on('click', function(){
     var name = $('.recipeName').val().split(' ').join('-');
-    var recipeName = localStorage.getItem('recipeName-' + name)
+    var recipeName = localStorage.getItem('recipeName-' + name);
     if(recipeName){
       alert('Recipe name already exists')
     }
@@ -104,7 +104,6 @@ $(document).ready(function(){
 
     }
     if (buttonPressed === "btn-delete-recipe"){
-      console.log(e)
       if(window.confirm("Are you sure you want to delete this recipe?")){
         deleteRecipe(closestDiv);
       }
@@ -127,9 +126,9 @@ $(document).ready(function(){
         var img = result.matches[i].imageUrlsBySize['90'];
         var recipeID = result.matches[i].id;
         makeCard(recipeID, img, name);
-        console.log(result.matches[i].recipeName);
-        console.log(result.matches[i].id);
-        console.log(result.matches[i].imageUrlsBySize['90']);
+        // console.log(result.matches[i].recipeName);
+        // console.log(result.matches[i].id);
+        // console.log(result.matches[i].imageUrlsBySize['90']);
       }
     })
   };
@@ -137,12 +136,20 @@ $(document).ready(function(){
 
   $('.searchButton').on('click', function(e){
     $('.recipe-cards').html('');
-    var search = $('.searchInput').val().split(' ').join('+');
-    var url = `http://api.yummly.com/v1/api/recipes?_app_id=${appID}&_app_key=${appKey}&q=${search}`;
+    var search = $('.searchInput').val().toLowerCase().split(' ').join('+');
+    var cookies = ['cookies', 'cookie'];
+    if(document.querySelector('.searchInput').reportValidity()){
+      if (!search.includes(cookies)){
+        var url = `http://api.yummly.com/v1/api/recipes?_app_id=${appID}&_app_key=${appKey}&q=${search}+cookies`;
+      }else{
+        var url = `http://api.yummly.com/v1/api/recipes?_app_id=${appID}&_app_key=${appKey}&q=${search}`;
+      }
+      console.log(url);
+      e.preventDefault();
+      getApiData(url);
+      $('.searchInput').val('');
+    }
 
-    e.preventDefault();
-    getApiData(url);
-    $('.searchInput').val('');
 
   });
 
