@@ -12,7 +12,7 @@ $(document).ready(function(){
   }
 
   function deleteRecipe(div){
-    $('#' + div).html('');
+    $('#' + div).remove();
     localStorage.removeItem('recipeName-' +div);
     localStorage.removeItem('recipeIngr-' +div);
   }
@@ -21,9 +21,9 @@ $(document).ready(function(){
   function createRecipe(recipeName, recipe, nameWithSpaces){
     var divID = '#' + recipeName;
     $(".allRecipes").prepend('<br><div class="recipePost" id="'+ recipeName +'" </div>')
-    $(divID).append('<input class="rName" size=50 style="font-size:20px; font-weight: bold;" value="'+ nameWithSpaces + '" readonly></input><br><textarea class="recipe-text" cols="80" class="recipe-input" readonly>' +recipe + '</textarea><br>');
-    $(divID).append('<button class = "btn-edit" id="btn-edit-'+recipeName+'"type="button">Edit</button>');
-    $(divID).append('<button class = "btn-delete-recipe" id="btn-delete-'+recipeName+'" type="button" >Delete</button><br>');
+    $(divID).append('<input class="rName" cols="45" rows="4" style="font-size:14px; font-weight: bold;" value="'+ nameWithSpaces + '" readonly></input><br><textarea class="recipe-text" cols="37" rows="10" class="recipe-input" readonly>' +recipe + '</textarea><br>');
+    $(divID).append('<button class = "btn-edit" id="btn-edit-'+recipeName+'"type="button"><i class="fa fa-pencil-square-o aria-hidden="true""></i></button>');
+    $(divID).append('<button class = "btn-delete-recipe" id="btn-delete-'+recipeName+'" type="button" ><i class="fa fa-trash-o aria-hidden="true""></i></button><br>');
   }
 
   // populate local storage onto page
@@ -87,7 +87,7 @@ $(document).ready(function(){
       //Hide 'edit' and 'delete' button and show 'save' button
       $(targetRecipe).hide()
       $('#btn-delete-'+recipeName.value.split(' ').join('-')).hide();
-      $('#'+closestDiv).append('<button class = "btn-save" type="button">Save</button>')
+      $('#'+closestDiv).append('<button class = "btn-save" type="button"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>')
 
       //save when 'save' is clicked and remove button
       $('.btn-save').on('click',function(){
@@ -104,6 +104,7 @@ $(document).ready(function(){
 
     }
     if (buttonPressed === "btn-delete-recipe"){
+      console.log(e)
       if(window.confirm("Are you sure you want to delete this recipe?")){
         deleteRecipe(closestDiv);
       }
